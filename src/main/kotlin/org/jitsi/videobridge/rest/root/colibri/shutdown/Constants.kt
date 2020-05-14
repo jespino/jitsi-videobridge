@@ -14,15 +14,13 @@
  * limitations under the License.
  */
 
-package org.jitsi.videobridge.rest.root.colibri.shutdown;
+package org.jitsi.videobridge.rest.root.colibri.shutdown
 
-public class Constants
-{
+object Constants {
     /**
      * The name of the <tt>System</tt> and <tt>ConfigurationService</tt>
      * boolean property which enables graceful shutdown through REST API.
      * It is disabled by default.
      */
-    public static final String ENABLE_REST_SHUTDOWN_PNAME
-            = "org.jitsi.videobridge.ENABLE_REST_SHUTDOWN";
+    const val ENABLE_REST_SHUTDOWN_PNAME = "org.jitsi.videobridge.ENABLE_REST_SHUTDOWN"
 }

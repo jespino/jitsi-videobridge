@@ -96,7 +96,7 @@ public class ShutdownTest extends JerseyTest
     {
         setSuccessfulShutdownIqResponse();
 
-        Shutdown.ShutdownJson json = new Shutdown.ShutdownJson(true);
+        Shutdown.Companion.ShutdownJson json = new Shutdown.Companion.ShutdownJson(true);
         Response resp = target(BASE_URL + "/").request().post(Entity.json(json));
 
         assertTrue(shutdownIQArgumentCaptor.getValue().isGracefulShutdown());
@@ -109,7 +109,7 @@ public class ShutdownTest extends JerseyTest
     {
         setSuccessfulShutdownIqResponse();
 
-        Shutdown.ShutdownJson json = new Shutdown.ShutdownJson(false);
+        Shutdown.Companion.ShutdownJson json = new Shutdown.Companion.ShutdownJson(false);
         Response resp = target(BASE_URL + "/").request().post(Entity.json(json));
 
         assertFalse(shutdownIQArgumentCaptor.getValue().isGracefulShutdown());
@@ -122,7 +122,7 @@ public class ShutdownTest extends JerseyTest
     {
         setSuccessfulShutdownIqResponse();
 
-        Shutdown.ShutdownJson json = new Shutdown.ShutdownJson(false);
+        Shutdown.Companion.ShutdownJson json = new Shutdown.Companion.ShutdownJson(false);
         Response resp = target(BASE_URL + "/")
                 .request()
                 .header("X-FORWARDED-FOR", "jitsi")
@@ -137,7 +137,7 @@ public class ShutdownTest extends JerseyTest
     {
         setErrorShutdownIqResponse(XMPPError.Condition.not_authorized);
 
-        Shutdown.ShutdownJson json = new Shutdown.ShutdownJson(false);
+        Shutdown.Companion.ShutdownJson json = new Shutdown.Companion.ShutdownJson(false);
         Response resp = target(BASE_URL + "/").request().post(Entity.json(json));
 
         assertEquals(HttpStatus.UNAUTHORIZED_401, resp.getStatus());
@@ -148,7 +148,7 @@ public class ShutdownTest extends JerseyTest
     {
         setErrorShutdownIqResponse(XMPPError.Condition.service_unavailable);
 
-        Shutdown.ShutdownJson json = new Shutdown.ShutdownJson(true);
+        Shutdown.Companion.ShutdownJson json = new Shutdown.Companion.ShutdownJson(true);
         Response resp = target(BASE_URL + "/").request().post(Entity.json(json));
 
         assertEquals(HttpStatus.SERVICE_UNAVAILABLE_503, resp.getStatus());
@@ -159,7 +159,7 @@ public class ShutdownTest extends JerseyTest
     {
         setErrorShutdownIqResponse(XMPPError.Condition.undefined_condition);
 
-        Shutdown.ShutdownJson json = new Shutdown.ShutdownJson(true);
+        Shutdown.Companion.ShutdownJson json = new Shutdown.Companion.ShutdownJson(true);
         Response resp = target(BASE_URL + "/").request().post(Entity.json(json));
 
         assertEquals(HttpStatus.INTERNAL_SERVER_ERROR_500, resp.getStatus());
